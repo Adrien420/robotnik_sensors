@@ -1,12 +1,11 @@
 
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 project(robotnik_sensors)
 
-find_package(catkin REQUIRED COMPONENTS )
+find_package(ament_cmake REQUIRED)
 
-catkin_package()
-
-install(
-  DIRECTORY meshes urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+install(DIRECTORY meshes urdf
+  DESTINATION share/${PROJECT_NAME}/
 )
+
+ament_package()
