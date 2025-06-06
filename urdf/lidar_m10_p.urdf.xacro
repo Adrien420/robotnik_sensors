@@ -55,15 +55,15 @@
 
   <xacro:macro name="sensor_lidar_m10_p_gazebo">
     <gazebo reference="${prefix}_link">
-      <xacro:if value="${gpu}">
+      <!--<xacro:if value="${gpu}">
         <xacro:property name="ray_type" value="gpu_ray" />
         <xacro:property name="plugin_lib" value="libgazebo_ros_gpu_laser.so" />
       </xacro:if>
       <xacro:unless value="${gpu}">
         <xacro:property name="ray_type" value="ray" />
         <xacro:property name="plugin_lib" value="libgazebo_ros_laser.so" />
-      </xacro:unless>
-      <sensor type="${ray_type}" name="${prefix}_sensor">
+      </xacro:unless>-->
+      <sensor type="gpu_lidar" name="${prefix}_sensor">
         <pose>0 0 0 0 0 0</pose>
         <visualize>false</visualize>
         <update_rate>12</update_rate>
@@ -87,11 +87,11 @@
             <stddev>0.01</stddev>
           </noise>
         </ray>
-        <plugin name="${prefix}_controller" filename="${plugin_lib}">
+        <!--<plugin name="${prefix}_controller" filename="${plugin_lib}">
           <topicName>${prefix_topic}/scan</topicName>
           <frameName>/${prefix}_link</frameName>
           <ignoreTfPrefix>1</ignoreTfPrefix>
-        </plugin>
+        </plugin>-->
       </sensor>
     </gazebo>
   </xacro:macro>
