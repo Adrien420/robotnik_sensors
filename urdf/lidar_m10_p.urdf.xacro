@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
-  <xacro:macro name="sensor_lidar_m10_p" params="prefix parent prefix_topic:='front_laser' *origin min_angle:=3.14159 max_angle:=-3.14159 gpu:=^|false include_inertial:=^|true">
+  <xacro:macro name="sensor_lidar_m10_p" params="id prefix prefix_laser parent *origin min_angle:=3.14159 max_angle:=-3.14159 include_inertial:=^|true">
 
-    <joint name="${prefix}_base_joint" type="fixed">
+    <joint name="${prefix_laser}_base_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
-      <child link="${prefix}_base_link"/>
+      <child link="${prefix_laser}_base_link"/>
     </joint>
 
 
-    <link name="${prefix}_base_link">
+    <link name="${prefix_laser}_base_link">
       <collision>
-        <origin xyz="0 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0 0 0.01" rpy="0 0 0"/>
         <geometry>
          <mesh filename="package://robotnik_sensors/meshes/lidar_m10_p.STL"/>
         </geometry>
       </collision>
 
       <visual>
-        <origin xyz="0 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0 0 0.01" rpy="0 0 0"/>
         <geometry>
             <mesh filename="package://robotnik_sensors/meshes/lidar_m10_p.STL" />
         </geometry>
@@ -33,18 +33,18 @@
       </xacro:if>
     </link>
 
-    <joint name="${prefix}_joint" type="fixed">
-      <origin xyz="0 0 0.02305" rpy="0 0 0"/>
-      <parent link="${prefix}_base_link"/>
-      <child link="${prefix}_link"/>
+    <joint name="${prefix_laser}_joint" type="fixed">
+      <!-- <origin xyz="0 0 0.02305" rpy="0 0 0"/> -->
+      <origin xyz="0.05 0.05 0.05" rpy="0 0 0"/>
+      <parent link="${prefix_laser}_base_link"/>
+      <child link="${prefix_laser}_link"/>
     </joint>
 
-    <link name="${prefix}_link">
+    <link name="${prefix_laser}_link">
     </link>
 
-    <gazebo reference="${prefix}_link">
-      <sensor type="gpu_lidar" name="${prefix}_sensor">
-      <pose>0 0 0.1 0 0 0</pose>
+    <gazebo reference="${prefix_laser}_link">
+      <sensor type="gpu_lidar" name="${prefix_laser}_sensor">
         <visualize>true</visualize>
         <update_rate>12</update_rate>
         <ray>
@@ -67,6 +67,8 @@
             <stddev>0.01</stddev>
           </noise>
         </ray>
+        <gz_frame_id>${prefix}${id}/${prefix_laser}_link</gz_frame_id>
+        <topic>scan_${id}</topic>
       </sensor>
     </gazebo>
 
