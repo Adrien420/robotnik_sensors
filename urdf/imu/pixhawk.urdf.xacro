@@ -3,15 +3,7 @@
 
   <xacro:include filename="$(find robotnik_sensors)/urdf/imu/imu_plugin.urdf.xacro" />
 
-  <xacro:macro name="sensor_pixhawk"
-               params="frame_prefix
-                       parent
-                       *origin
-                       gazebo_classic:=false
-                       gazebo_ignition:=false
-                       node_name:=imu
-                       node_namespace:=${None}
-                       topic_prefix:=~/">
+  <xacro:macro name="sensor_pixhawk" params="id frame_prefix name_prefix parent *origin">
 
     <joint name="${frame_prefix}base_joint" type="fixed">
       <xacro:insert_block name="origin"/>
@@ -52,11 +44,7 @@
 
 
     <xacro:imu_plugin
-      node_namespace="${node_namespace}"
-      node_name="${node_name}"
-      gazebo_classic="${gazebo_classic}"
-      gazebo_ignition="${gazebo_ignition}"
-      frame_link="${frame_prefix}link"
+      frame_prefix="${frame_prefix}"
       rate="200.0"
     >
     </xacro:imu_plugin>
