@@ -3,6 +3,7 @@
 
   <xacro:macro name="imu_plugin" params="
             frame_prefix
+            name_prefix
             rate
             ">
 

@@ -2,21 +2,14 @@
 <robot name="gps_plugin" xmlns:xacro="http://wiki.ros.org/xacro">
 
   <xacro:macro name="gps_plugin" params="
-            node_namespace
-            node_name
-            frame_link
-            topic_prefix
-            gazebo_classic
-            gazebo_ignition
+            frame_prefix
+            name_prefix
             rate
             ">
 
-    <xacro:if value="${gazebo_classic}">
-        <gazebo reference="${frame_link}">
-            <sensor type="gps" name="${node_name}">
-            <always_on>true</always_on>
-            <update_rate>${rate}</update_rate>
-            <gps>
+    <gazebo reference="${frame_prefix}link">
+        <sensor name="${frame_prefix}sensor" type="navsat">
+            <!-- <navsat>
                 <position_sensing>
                 <horizontal>
                     <noise type="gaussian">
@@ -45,59 +38,13 @@
                     </noise>
                 </vertical>
                 </vertical_sensing>
-            </gps>
-            <plugin name="${node_name}" filename="libgazebo_ros_gps_sensor.so">
-                <ros>
-                <namespace>${node_namespace}</namespace>
-                <remapping>~/out:=${topic_prefix}fix</remapping>
-                <remapping>~/vel:=${topic_prefix}vel</remapping>
-                </ros>
-            </plugin>
-            </sensor>
-        </gazebo>
-    </xacro:if>
-
-    <xacro:if value="${gazebo_ignition}">
-        <gazebo reference="${frame_link}">
-            <sensor name="${node_name}" type="navsat">
-                <navsat>
-                    <position_sensing>
-                    <horizontal>
-                        <noise type="gaussian">
-                        <mean>0.0</mean>
-                        <stddev>0.1</stddev>
-                        </noise>
-                    </horizontal>
-                    <vertical>
-                        <noise type="gaussian">
-                        <mean>0.0</mean>
-                        <stddev>0.1</stddev>
-                        </noise>
-                    </vertical>
-                    </position_sensing>
-                    <vertical_sensing>
-                    <horizontal>
-                        <noise type="gaussian">
-                        <mean>0.0</mean>
-                        <stddev>0.1</stddev>
-                        </noise>
-                    </horizontal>
-                    <vertical>
-                        <noise type="gaussian">
-                        <mean>0.0</mean>
-                        <stddev>0.1</stddev>
-                        </noise>
-                    </vertical>
-                    </vertical_sensing>
-                </navsat>
-                <always_on>1</always_on>
-                <update_rate>${rate}</update_rate>
-                <topic>${node_namespace}/${node_name}/data</topic>
-                <gz_frame_id>${frame_link}</gz_frame_id>
-                <plugin filename="ignition-gazebo-navsat-system" name="ignition::gazebo::systems::NavSat"/>
-            </sensor>
-        </gazebo>
-    </xacro:if>
+            </navsat> -->
+            <always_on>1</always_on>
+            <update_rate>${rate}</update_rate>
+            <topic>navsat_data_${id}</topic>
+            <gz_frame_id>${name_prefix}${id}/${frame_prefix}link</gz_frame_id>
+        </sensor>
+    </gazebo>
 
   </xacro:macro>
 
