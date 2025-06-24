@@ -42,14 +42,14 @@
       </collision>
     </link>
 
-    <joint name="${frame_prefix}pan_joint" type="fixed">
-      <!-- <axis xyz="1 0 0"/> -->
+    <joint name="${frame_prefix}pan_joint" type="revolute">
+      <axis xyz="1 0 0"/>
       <origin xyz="0.04 0.0 0.0" rpy="0 0 0"/>
       <!-- check the displacement -->
       <parent link="${frame_prefix}base_link"/>
       <child link="${frame_prefix}pan_link"/>
-      <!-- <limit effort="${ptz_joint_effort_limit}" velocity="${ptz_joint_velocity_limit}" lower="-3.1416" upper="3.1416"/>
-      <joint_properties damping="${ptz_joint_damping}" friction="{ptz_joint_friction}"/> -->
+      <limit effort="${ptz_joint_effort_limit}" velocity="${ptz_joint_velocity_limit}" lower="-3.1416" upper="3.1416"/>
+      <joint_properties damping="${ptz_joint_damping}" friction="{ptz_joint_friction}"/>
     </joint>
     <link name="${frame_prefix}pan_link">
       <inertial>
@@ -59,13 +59,13 @@
       </inertial>
     </link>
 
-    <joint name="${frame_prefix}tilt_joint" type="fixed">
-      <!-- <axis xyz="0 -1 0"/> -->
+    <joint name="${frame_prefix}tilt_joint" type="revolute">
+      <axis xyz="0 -1 0"/>
       <origin xyz="0.0 0.0 0.0" rpy="0 ${-PI/2} 0"/>
       <parent link="${frame_prefix}pan_link"/>
       <child link="${frame_prefix}tilt_link"/>
-      <!-- <limit effort="${ptz_joint_effort_limit}" velocity="${ptz_joint_velocity_limit}" lower="-1.5708" upper="1.5708"/>
-      <joint_properties damping="${ptz_joint_damping}" friction="{ptz_joint_friction}"/> -->
+      <limit effort="${ptz_joint_effort_limit}" velocity="${ptz_joint_velocity_limit}" lower="-1.5708" upper="1.5708"/>
+      <joint_properties damping="${ptz_joint_damping}" friction="{ptz_joint_friction}"/>
     </joint>
     <link name="${frame_prefix}tilt_link">
       <inertial>
@@ -89,7 +89,7 @@
     </link>
     <!-- Optical frame -->
     <joint name="${frame_prefix}optical_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}"/>
+      <origin xyz="0 0 0" rpy="0 0 ${-PI/2}"/>
       <parent link="${frame_prefix}frame_link"/>
       <child link="${frame_prefix}optical_frame_link"/>
     </joint>
