@@ -18,9 +18,9 @@
       </inertial>
 	    <visual>
 	      <origin rpy="0 0 0" xyz="0 0 0"/>
-	      <material name="gps_color">
+	      <!-- <material name="gps_color">
            <color rgba="1 1 1 1"/>
-        </material>
+        </material> -->
 	      <geometry>
 	        <mesh filename="package://robotnik_sensors/meshes/gps/antenna_3GO16.stl"/>
 	      </geometry>

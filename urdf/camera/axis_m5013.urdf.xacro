@@ -27,9 +27,9 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
         <!-- to center the axis model -->
-        <material name="axis_color">
+        <!-- <material name="axis_color">
           <color rgba="0.1 0.1 0.1 1"/>
-        </material>
+        </material> -->
         <geometry>
           <mesh filename="package://robotnik_sensors/meshes/axis_m5013.dae" scale="1.0 1.0 1.0"/>
         </geometry>
