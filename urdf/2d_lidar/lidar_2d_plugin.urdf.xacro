@@ -39,7 +39,7 @@
           </noise>
         </lidar>
 
-        <topic> scan_${id} </topic>
+        <topic> ${name_prefix}${id}/scan </topic>
         <gz_frame_id> ${name_prefix}${id}/${frame_prefix}link </gz_frame_id>
       </sensor>
     </gazebo>

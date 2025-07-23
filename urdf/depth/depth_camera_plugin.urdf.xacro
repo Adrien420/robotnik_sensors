@@ -37,7 +37,7 @@
         <update_rate>30</update_rate>
         <visualize>true</visualize>
 
-        <topic>depth/image_raw_${id}</topic>
+        <topic>${name_prefix}${id}/depth/image_raw</topic>
         <gz_frame_id> ${name_prefix}${id}/${frame_prefix}depth_optical_frame </gz_frame_id>
         
       </sensor>

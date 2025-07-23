@@ -41,7 +41,7 @@
             </navsat> -->
             <always_on>1</always_on>
             <update_rate>${rate}</update_rate>
-            <topic>navsat_data_${id}</topic>
+            <topic>${name_prefix}${id}/navsat_data</topic>
             <gz_frame_id>${name_prefix}${id}/${frame_prefix}link</gz_frame_id>
         </sensor>
     </gazebo>

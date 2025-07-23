@@ -81,7 +81,7 @@
           <linear_acceleration_enabled>true</linear_acceleration_enabled>
         </imu>
 
-        <topic>imu_data_${id}</topic>
+        <topic>${name_prefix}${id}/imu_data</topic>
         <gz_frame_id>${name_prefix}${id}/${frame_prefix}link</gz_frame_id>
 
       </sensor>

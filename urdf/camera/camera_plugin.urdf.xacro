@@ -16,7 +16,7 @@
     <gazebo reference="${frame_prefix}optical_frame_link">
       <sensor name="${frame_prefix}sensor" type="camera">
           <camera name="${frame_prefix}camera">
-            <camera_info_topic>color/camera_info_${id}</camera_info_topic>
+            <camera_info_topic>${name_prefix}${id}/color/camera_info</camera_info_topic>
             <horizontal_fov>${radians(horizontal_fov)}</horizontal_fov>
             <vertical_fov>${radians(float(vertical_fov))}</vertical_fov>
             <image>
@@ -38,7 +38,7 @@
           <update_rate>${rate}</update_rate>
           <visualize>true</visualize>
 
-          <topic>color/image_raw_${id}</topic>
+          <topic>${name_prefix}${id}/color/image_raw</topic>
           <gz_frame_id>${name_prefix}${id}/${frame_prefix}optical_frame_link</gz_frame_id>
          
       </sensor>
